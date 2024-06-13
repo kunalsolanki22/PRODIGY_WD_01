@@ -1,0 +1,217 @@
+/* Basic Reset */
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Jost:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Rubik+Scribble&display=swap');
+
+* {
+    
+    box-sizing: border-box;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10px;
+    font-style:content;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+    
+}
+
+main {
+    padding-top: 80px; 
+}
+
+/* Navbar Styles */
+#navbar {
+    display: flex;
+    position: fixed;
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    background-color: #181818;
+    padding: 20px 20px;
+    z-index: 1000;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgb(255, 255, 255);
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar ul {
+    list-style-type: circle;
+    text-align: right;
+    text-align: right;
+    margin: 0;
+}
+
+#navbar ul li {
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+#navbar ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: #ff9800;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+#navbar ul li:hover::before,
+#navbar ul li a.active::before {
+    transform: scaleX(1);
+}
+
+#navbar ul li:hover {
+    transform: scale(1.1);
+}
+
+#navbar ul li a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s, text-shadow 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+#navbar ul li a::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #ff9800;
+    transition: width 0.3s, left 0.3s;
+    z-index: -1;
+}
+
+#navbar ul li a:hover::before,
+#navbar ul li a.active::before {
+    width: 100%;
+    left: 0;
+}
+
+/* Remove hover effect on active item in dropdown */
+#navbar ul li a.active:hover::before {
+    transform: scaleX(1);
+}
+
+#navbar ul li a.active:hover {
+    color: #ff9800;
+    text-shadow: 0 0 5px #ff9800;
+}
+
+
+/* Hamburger Menu */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    background-color: white;
+    border-radius: 10px;
+    display: block;
+    height: 3px;
+    margin: 4px 0;
+    transition: 0.3s;
+    width: 25px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    #navbar ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        background-image:linear-gradient(to bottom right ,rgb(23, 44, 145),rgb(72, 4, 88));
+        left: 0%;
+        margin-top: 30px;
+    }
+    #navbar ul li {
+        margin: 10px 0;
+        text-align: center;
+    }
+    #navbar ul.active {
+        display: flex;
+    }
+}
+
+#navbar ul li a:hover {
+    color: #ff9800;
+    text-shadow: 0 0 5px #ff9800;
+}
+
+#navbar ul li a.active {
+    color: #ff9800;
+    text-shadow: 0 0 5px #ff9800;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Scroll Change Background Color */
+.scrolled {
+    background-image :linear-gradient(to right,#25094a,rgb(36, 34, 34)) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* transition: ease-in 0.3s; */
+}
+
+/* Section Styles */
+section {
+    padding: 60px;
+    text-align: center;
+    min-height: 60vh;
+    box-shadow: 0 4px 6px rgb(0, 0, 0);
+}
+
+#home {
+    background-color: #22092C;
+    color: #DBAFA0;
+}
+
+#about {
+    background-color: #872341;
+    color: #BB8493;
+}
+
+#services {
+    background-color: #BB8493;
+    color: #872341;
+}
+
+#contact {
+    background-color: #DBAFA0;
+    color: #22092C;
+}
+
+/* Additional Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#navbar ul li {
+    animation: slideDown 0.5s ease forwards;
+    animation-delay: calc(0.1s * var(--i));
+}
